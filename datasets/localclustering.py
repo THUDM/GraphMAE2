@@ -123,7 +123,7 @@ def load_dataset(data_dir, dataset_name):
         split_idx = dataset.get_idx_split()
         label = label.view(-1)
             
-    elif dataset_name == "mag_scholar_f":
+    elif dataset_name == "mag-scholar-f":
         edge_index = np.load(os.path.join(data_dir, dataset_name, "edge_index_f.npy"))
         print(len(edge_index[0]))
         graph = dgl.DGLGraph((edge_index[0], edge_index[1]))

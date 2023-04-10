@@ -35,11 +35,21 @@ Supported datasets:
 * mini batch node classification:  `ogbn-arxiv`, `ogbn-products`, `mag-scholar-f`, `ogbn-papers100M`
 * full batch node classification: `cora`, `citeseer`, `pubmed`
 
+
+Before you can start mini-batch training, you'll need to generate a local cluster if you want to use local-clustering for training. By default, the program will load data from `./data` and save the generated local clusters to `./lc_ego_graphs`. To generate a local cluster,  you should first install [localclustering](https://github.com/kfoynt/LocalGraphClustering) and then run the following command:
+
+```
+python ./datasets/localclustering.py --dataset <your_dataset> --data_dir <path_to_data>
+```
+And we also provide the pre-generated local clusters which can be downloaded [here](https://cloud.tsinghua.edu.cn/d/64f859f389ca43eda472/) and put them into `lc_ego_graphs`.
+
+
+
 Run the scripts provided or add `--use_cfg` in command to reproduce the reported results.
 
 <h2> Datasets </h2>
 
-During the code's execution, the OGB and small-scale datasets (Cora, Citeseer, and PubMed) will be downloaded automatically. For the MAG-SCHOLAR dataset, you can download the raw data from [here](https://figshare.com/articles/dataset/mag_scholar/12696653) or use our processed version, which can be found [here](https://cloud.tsinghua.edu.cn/d/776e73d84d47454c958d/). Once you have the dataset, place it into the `./data/mag_scholar_f` folder for later usage. The folder should contain the following files:
+During the code's execution, the OGB and small-scale datasets (Cora, Citeseer, and PubMed) will be downloaded automatically. For the MAG-SCHOLAR dataset, you can download the raw data from [here](https://figshare.com/articles/dataset/mag_scholar/12696653) or use our processed version, which can be found [here](https://cloud.tsinghua.edu.cn/d/776e73d84d47454c958d/) (the four feature files have to be merged in to a `feature_f.npy`). Once you have the dataset, place it into the `./data/mag_scholar_f` folder for later usage. The folder should contain the following files:
 ```
 - mag_scholar_f
 |--- edge_index_f.npy
@@ -49,13 +59,6 @@ During the code's execution, the OGB and small-scale datasets (Cora, Citeseer, a
 ```
 
 
-
-Before you can start mini-batch training, you'll need to generate a local cluster if you want to use local-clustering for training. By default, the program will load data from `./data` and save the generated local clusters to `./lc_ego_graphs`. To generate a local cluster,  you should first install [localclustering](https://github.com/kfoynt/LocalGraphClustering) and then run the following command:
-
-```
-python ./datasets/localclustering.py --dataset <your_dataset> --data_dir <path_to_data>
-```
-And we also provide the pre-generated local clusters which can be downloaded [here](https://cloud.tsinghua.edu.cn/d/64f859f389ca43eda472/) and put them into `lc_ego_graphs`.
 
 Soon, we will provide [SAINTSampler](https://arxiv.org/abs/1907.04931) as the baseline. 
 
@@ -83,5 +86,10 @@ Experimental results of node classification on large-scale datasets (Accuracy, %
 If you find this work is helpful to your research, please consider citing our paper:
 
 ```
-
+@inproceedings{hou2023graphmae2,
+  title={GraphMAE2: A Decoding-Enhanced Masked Self-Supervised Graph Learner},
+  author={Zhenyu Hou, Yufei He, Yukuo Cen, Xiao Liu, Yuxiao Dong, Evgeny Kharlamov, Jie Tang},
+  booktitle={Proceedings of the ACM Web Conference 2023 (WWW’23)},
+  year={2023}
+}
 ```

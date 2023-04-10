@@ -50,15 +50,13 @@ def load_dataset(data_dir, dataset_name):
         if dataset_name in ("ogbn-arxiv","ogbn-papers100M"):
             feats = scale_feats(feats)
     elif dataset_name == "mag-scholar-f":
-        edge_index = np.load(os.path.join(data_dir, "edge_index_f.npy"))
+        edge_index = np.load(os.path.join(data_dir, dataset_name, "edge_index_f.npy"))
         feats = torch.from_numpy(np.load(os.path.join(data_dir, "feature_f.npy"))).float()
 
-        print(len(edge_index[0]))
         graph = dgl.DGLGraph((edge_index[0], edge_index[1]))
 
         graph = dgl.remove_self_loop(graph)
         graph = dgl.add_self_loop(graph)
-        print(graph)
 
         label = torch.from_numpy(np.load(os.path.join(data_dir, "label_f.npy"))).to(torch.long)
         split_idx = torch.load(os.path.join(data_dir, "split_idx_f.pt"))
