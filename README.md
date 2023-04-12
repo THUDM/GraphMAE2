@@ -3,6 +3,10 @@ Graph Learner </h1>
 
 Implementation for WWW'23 paper:  [GraphMAE2: A Decoding-Enhanced Masked Self-Supervised
 Graph Learner](https://arxiv.org/abs/2304.04779).
+<img src="assets/../asserts/overview.png">
+
+[GraphMAE] The predecessor of this work: [GraphMAE: Self-Supervised Masked Graph Autoencoders](https://arxiv.org/abs/2205.10803) can be found [here](https://github.com/THUDM/GraphMAE).
+
 
 <h2>Dependencies </h2>
 
