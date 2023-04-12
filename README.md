@@ -2,7 +2,7 @@
 Graph Learner </h1>
 
 Implementation for WWW'23 paper:  [GraphMAE2: A Decoding-Enhanced Masked Self-Supervised
-Graph Learner]().
+Graph Learner](https://arxiv.org/abs/2304.04779).
 
 <h2>Dependencies </h2>
 
@@ -35,17 +35,17 @@ Supported datasets:
 * mini batch node classification:  `ogbn-arxiv`, `ogbn-products`, `mag-scholar-f`, `ogbn-papers100M`
 * full batch node classification: `cora`, `citeseer`, `pubmed`
 
+Run the scripts provided or add `--use_cfg` in command to reproduce the reported results.
 
-Before you can start mini-batch training, you'll need to generate a local cluster if you want to use local-clustering for training. By default, the program will load data from `./data` and save the generated local clusters to `./lc_ego_graphs`. To generate a local cluster,  you should first install [localclustering](https://github.com/kfoynt/LocalGraphClustering) and then run the following command:
+**For Large scale graphs**
+Before starting mini-batch training, you'll need to generate local clusters if you want to use local-clustering for training. By default, the program will load dataset from `./data` and save the generated local clusters to `./lc_ego_graphs`. To generate a local cluster,  you should first install [localclustering](https://github.com/kfoynt/LocalGraphClustering) and then run the following command:
 
 ```
 python ./datasets/localclustering.py --dataset <your_dataset> --data_dir <path_to_data>
 ```
-And we also provide the pre-generated local clusters which can be downloaded [here](https://cloud.tsinghua.edu.cn/d/64f859f389ca43eda472/) and put them into `lc_ego_graphs`.
+And we also provide the pre-generated local clusters which can be downloaded [here](https://cloud.tsinghua.edu.cn/d/64f859f389ca43eda472/) and then put into `lc_ego_graphs` for usage.
 
 
-
-Run the scripts provided or add `--use_cfg` in command to reproduce the reported results.
 
 <h2> Datasets </h2>
 
@@ -57,8 +57,6 @@ During the code's execution, the OGB and small-scale datasets (Cora, Citeseer, a
 |--- feature_f.npy
 |--- label_f.npy
 ```
-
-
 
 Soon, we will provide [SAINTSampler](https://arxiv.org/abs/1907.04931) as the baseline. 
 
