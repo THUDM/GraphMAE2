@@ -37,7 +37,7 @@ def build_model(args):
         num_hidden=num_hidden,
         num_layers=num_layers,
         num_dec_layers=num_dec_layers,
-        num_decoder=num_remasking,
+        num_remasking=num_remasking,
         nhead=num_heads,
         nhead_out=num_out_heads,
         activation=activation,
