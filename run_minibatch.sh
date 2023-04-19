@@ -11,7 +11,7 @@ CUDA_VISIBLE_DEVICES=$device \
 	--mask_type "mask" \
 	--mask_rate 0.5 \
 	--remask_rate 0.5 \
-	--num_decoder 3 \
+	--num_remasking 3 \
 	--in_drop 0.2 \
 	--attn_drop 0.2 \
 	--num_layers 4 \
