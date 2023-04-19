@@ -260,7 +260,6 @@ class PreModel(nn.Module):
 
         loss_rec_all = 0
         if self._remask_method == "random":
-            print("random")
             for i in range(self._num_remasking):
                 rep = origin_rep.clone()
                 rep, remask_nodes, rekeep_nodes = self.random_remask(use_g, rep, self._remask_rate)
