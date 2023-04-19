@@ -9,7 +9,7 @@ Graph Learner](https://arxiv.org/abs/2304.04779).
 
 <h3> ❗ Update </h3> 
 
-[2023-04-19] We have made checkpoints of pre-trained models on different datasets available - feel free to download them from [Google Drive](https://drive.google.com/drive/folders/1GiuP0PtIZaYlJWIrjvu73ZQCJGr6kGkh).
+[2023-04-19] We have made **checkpoints** of pre-trained models on different datasets available - feel free to download them from [Google Drive](https://drive.google.com/drive/folders/1GiuP0PtIZaYlJWIrjvu73ZQCJGr6kGkh).
 
 <h2>Dependencies </h2>
 
