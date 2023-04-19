@@ -18,7 +18,7 @@ def linear_probing_minibatch(
     model, graph,
     feats, ego_graph_nodes, labels, 
     lr_f, weight_decay_f, max_epoch_f, 
-    device, batch_size=-1):
+    device, batch_size=-1, shuffle=True):
     logging.info("-- Linear Probing in downstream tasks ---")
     train_ego_graph_nodes, val_ego_graph_nodes, test_ego_graph_nodes = ego_graph_nodes
     num_train, num_val = len(train_ego_graph_nodes), len(val_ego_graph_nodes)
@@ -53,7 +53,7 @@ def linear_probing_minibatch(
         test_acc = node_classification_linear_probing(
             (train_emb, val_emb, test_emb), 
             (train_lbls, val_lbls, test_lbls), 
-            lr_f, weight_decay_f, max_epoch_f, device, batch_size=batch_size)
+            lr_f, weight_decay_f, max_epoch_f, device, batch_size=batch_size, shuffle=shuffle)
         acc.append(test_acc)
 
     print(f"# final_acc: {np.mean(acc):.4f}, std: {np.std(acc):.4f}")
@@ -72,7 +72,7 @@ class LogisticRegression(nn.Module):
         return logits
         
 
-def node_classification_linear_probing(embeddings, labels, lr, weight_decay, max_epoch, device, mute=False, batch_size=-1):
+def node_classification_linear_probing(embeddings, labels, lr, weight_decay, max_epoch, device, mute=False, batch_size=-1, shuffle=True):
     criterion = torch.nn.CrossEntropyLoss()
 
     train_emb, val_emb, test_emb = embeddings
@@ -95,7 +95,7 @@ def node_classification_linear_probing(embeddings, labels, lr, weight_decay, max
     optimizer = torch.optim.Adam(encoder.parameters(), lr=lr, weight_decay=weight_decay)
     
     if batch_size > 0:
-        train_loader = LinearProbingDataLoader(np.arange(len(train_emb)), train_emb, train_label, batch_size=batch_size, num_workers=4, persistent_workers=True, shuffle=False)
+        train_loader = LinearProbingDataLoader(np.arange(len(train_emb)), train_emb, train_label, batch_size=batch_size, num_workers=4, persistent_workers=True, shuffle=shuffle)
         # train_loader = DataLoader(np.arange(len(train_emb)), batch_size=batch_size, shuffle=False)
         val_loader = LinearProbingDataLoader(np.arange(len(val_emb)), val_emb, val_label, batch_size=batch_size, num_workers=4, persistent_workers=True,shuffle=False)
         test_loader = LinearProbingDataLoader(np.arange(len(test_emb)), test_emb, test_label, batch_size=batch_size, num_workers=4, persistent_workers=True,shuffle=False)

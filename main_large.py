@@ -37,6 +37,7 @@ def evaluate(
     logger=None, ego_graph_nodes=None, 
     label_rate=1.0,
     full_graph_forward=False,
+    shuffle=True,
 ):
     logging.info("Using `lc` for evaluation...")
     num_train, num_val, num_test = [split_idx[k].shape[0] for k in ["train", "valid", "test"]]
@@ -62,7 +63,7 @@ def evaluate(
     
 
     if linear_prob:
-        result = linear_probing_minibatch(model, graph, feats, [train_ego_graph_nodes, val_ego_graph_nodes, test_ego_graph_nodes], [train_lbls, val_lbls, test_lbls], lr_f=lr_f, weight_decay_f=weight_decay_f, max_epoch_f=max_epoch_f, batch_size=batch_size, device=device)
+        result = linear_probing_minibatch(model, graph, feats, [train_ego_graph_nodes, val_ego_graph_nodes, test_ego_graph_nodes], [train_lbls, val_lbls, test_lbls], lr_f=lr_f, weight_decay_f=weight_decay_f, max_epoch_f=max_epoch_f, batch_size=batch_size, device=device, shuffle=shuffle)
     else:
         max_epoch_f = max_epoch_f // 2
 
@@ -256,6 +257,7 @@ if __name__ == "__main__":
             linear_prob=linear_prob,
             label_rate=label_rate,
             full_graph_forward=full_graph_forward,
+            shuffle=False if dataset_name == "ogbn-papers100M" else True
         )
 
         final_accs.append(float(final_acc))
