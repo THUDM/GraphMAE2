@@ -19,9 +19,9 @@ in_drop: 0.2
 loss_fn: sce 
 drop_edge_rate: 0.0
 optimizer: adam
-replace_rate: 0.1
-alpha_l: 4
+replace_rate: 0.15
+alpha_l: 3
 scheduler: True
 remask_method: fixed
 momentum: 0
-lam: 0.1
+lam: 0.15
